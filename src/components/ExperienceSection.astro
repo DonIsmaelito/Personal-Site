@@ -1,0 +1,227 @@
+---
+interface ExperienceEntry {
+  /** Path to the company's real logo mark, e.g. '/experiences/amazon-mark.png'
+   *  (square, pre-trimmed and re-padded to a uniform size). */
+  image: string;
+  /** Company name, shown beside the logo. */
+  name: string;
+  /** Small role/program subtext shown directly under the company name
+   *  (e.g. 'HDE Intern'). Optional. */
+  role?: string;
+  /** Year of the experience, shown at the trailing edge of the name's row
+   *  (mono idiom, mirrors Section's .entry-meta). Optional. */
+  meta?: string;
+  /** Short paragraph describing the experience, rendered below the name.
+   *  Optional — when absent the entry is just logo + name + year. */
+  description?: string;
+}
+
+interface Props {
+  title: string;
+  entries: ExperienceEntry[];
+  /**
+   * Mirrors Section.astro: when true this is a column inside the page grid and
+   * suppresses its own top hairline so the band draws ONE rule above the grid.
+   */
+  inGrid?: boolean;
+}
+
+const { title, entries, inGrid = false } = Astro.props;
+---
+
+<section class="section" class:list={{ 'in-grid': inGrid }}>
+  <h2 class="section-heading">{title}</h2>
+
+  <ul class="experiences" role="list">
+    {
+      entries.map((entry) => (
+        <li class="experience">
+          {/* Logo is decorative — the visible company name carries the meaning,
+              so alt is empty to avoid a screen reader announcing it twice. */}
+          <span class="experience-logo">
+            <img
+              src={entry.image}
+              alt=""
+              width="44"
+              height="44"
+              loading="lazy"
+              decoding="async"
+            />
+          </span>
+
+          {/* Media-object text block: a [name … year] header row to the right of
+              the logo. The description below breaks out of this well (negative
+              left margin) to span the full column for maximum prose width. */}
+          <div class="experience-body">
+            <div class="experience-head">
+              <span class="experience-name">{entry.name}</span>
+              {entry.meta && <span class="experience-meta">{entry.meta}</span>}
+            </div>
+            {entry.role && <p class="experience-role">{entry.role}</p>}
+            {entry.description && (
+              <p class="experience-desc">{entry.description}</p>
+            )}
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  /* Mirrors Section.astro's hairline contract so both component types sit on
+     identical column rhythm inside the grid. */
+  .section {
+    border-top: 1px solid var(--border);
+    padding-top: 2.5rem;
+    min-width: 0;
+  }
+
+  .section.in-grid {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  /* The section heading (.section-heading) is a shared rule in global.css,
+     used here and in Section.astro so both columns match the h1. */
+
+  /* Same inter-entry rhythm (1.75rem) as Section's .entries so the Experiences
+     column keeps step with the text-only Projects / Research columns. The
+     1.75rem entry gap reads clearly larger than the 0.4rem head->desc gap, so
+     each [header + paragraph] pair groups as one unit — the two stacked Amazon
+     entries don't visually merge. */
+  .experiences {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  /* Classic résumé media object: the logo is its own left column, top-aligned
+     (flex-start) so the 44px tile seats against the FIRST line of the name even
+     if a long name ever wraps to two lines. min-width:0 on the li lets the flex
+     chain clamp to the grid column's minmax(0,1fr) instead of widening it. */
+  .experience {
+    margin: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    min-width: 0;
+  }
+
+  /* Real company mark hosted on a Paper tile with a Flexoki hairline, rounded to
+     ~22% (10px on a 44px box — echoing the favicon and the site's tile radius).
+     The tile stays Paper (#fffcf0) in BOTH themes — not a theme token — so the
+     dark-on-transparent marks stay legible against the near-black dark
+     background. This is Claude Design's final spec. The marks are pre-padded,
+     so object-fit: contain seats them cleanly without touching the edge; no
+     gradients, shadows, or box chrome. */
+  .experience-logo {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: #fffcf0;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .experience-logo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* The text block fills the remaining width and can shrink below its content's
+     intrinsic size (min-width:0) so long names/years wrap instead of widening
+     the narrow grid column. */
+  .experience-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Header row mirrors Section's .entry-head: name on the left, year pushed to
+     the trailing edge so it lines up with the years in the Projects / Research
+     columns. baseline alignment seats the mono year on the serif name's
+     baseline. */
+  .experience-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+
+  /* Company name reads like the entry titles in the Projects / Research columns
+     (serif, 600, 1.125rem, full contrast) so the three columns stay siblings.
+     line-height:1.4 matches Section's .entry-title exactly, so the year's
+     baseline lines up to the pixel with the Projects / Research years.
+     min-width:0 + overflow-wrap let a long name wrap inside the narrow grid
+     column instead of widening it. */
+  .experience-name {
+    min-width: 0;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 1.125rem;
+    letter-spacing: -0.01em;
+    line-height: 1.4;
+    color: var(--text);
+    overflow-wrap: anywhere;
+  }
+
+  /* Small, muted role/program subtext directly beneath the company name
+     (e.g. 'HDE Intern'). Serif to match the name, a step down in size and
+     dimmed so the company name stays primary. */
+  .experience-role {
+    margin: 0.1rem 0 0;
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    line-height: 1.3;
+    color: var(--text-muted);
+  }
+
+  /* Year idiom matched to Section's .entry-meta: dim tabular mono, pushed to the
+     trailing edge of the row and never wrapping. flex-shrink:0 keeps it intact;
+     the name (min-width:0) yields first. */
+  .experience-meta {
+    margin-left: auto;
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  /* Description matches Section's .entry-desc. It sits in the media-object's
+     right-hand text well, aligned under the name (classic résumé layout), so it
+     never collides with the taller logo tile in the left column.
+     overflow-wrap:anywhere guards the ~19rem column against a stray long token
+     or URL; the prose itself wraps normally on whitespace. */
+  .experience-desc {
+    margin: 0.4rem 0 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    overflow-wrap: anywhere;
+  }
+
+  /* At very narrow widths let the year drop below the name (mirrors Section's
+     .entry-head wrap), so neither the long name nor the year is squeezed. */
+  @media (max-width: 30rem) {
+    .experience-head {
+      flex-wrap: wrap;
+    }
+
+    .experience-meta {
+      margin-left: 0;
+      flex-basis: 100%;
+    }
+  }
+</style>

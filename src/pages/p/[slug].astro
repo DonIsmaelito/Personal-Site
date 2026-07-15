@@ -1,0 +1,158 @@
+---
+import Base from '../../layouts/Base.astro';
+
+// Per-project pages. Two kinds:
+//  - 'blank' : a quiet placeholder (demo videos / apps land here for now).
+//  - 'pdf'   : the project title, a space for contacts, then an embedded PDF.
+//
+// To fill the contacts space on a PDF page, add a `contacts` HTML string to that
+// page below (e.g. contacts: 'Advisor: … · <a href="mailto:…">email</a>').
+// Drop the real document at the page's `pdf` path (public/papers/<slug>.pdf) to
+// replace the placeholder PDF.
+export function getStaticPaths() {
+  const pages = [
+    { slug: 'co-scientist', title: 'Co-Scientist', kind: 'blank' },
+    { slug: 'medminute', title: 'MedMinute', kind: 'blank' },
+    { slug: 'doxxing-detection-bot', title: 'Doxxing-Detection Bot', kind: 'blank' },
+    {
+      slug: 'watchagent',
+      title: 'WatchAgent',
+      kind: 'pdf',
+      pdf: '/papers/watchagent.pdf',
+    },
+    {
+      slug: 'egobench',
+      title: 'EgoBench',
+      kind: 'pdf',
+      pdf: '/papers/egobench.pdf',
+    },
+    {
+      slug: 'flashattention-kernel',
+      title: 'flashattention_kernel',
+      kind: 'pdf',
+      pdf: '/papers/flashattention-kernel.pdf',
+    },
+    {
+      slug: 'sample-efficient-rl-for-video-agents',
+      title: 'Sample-Efficient Reinforcement Learning for Video Agents',
+      kind: 'pdf',
+      pdf: '/papers/sample-efficient-rl-for-video-agents.pdf',
+    },
+  ];
+  return pages.map((p) => ({ params: { slug: p.slug }, props: p }));
+}
+
+const { title, kind, pdf } = Astro.props as {
+  title: string;
+  kind: string;
+  pdf?: string;
+};
+---
+
+<Base title={`${title} · Ismael Duran`}>
+  {
+    kind === 'pdf' ? (
+      <main class="pdf-page">
+        <p class="back"><a href="/">← Ismael Duran</a></p>
+        <div class="pdf-frame">
+          <object class="pdf-object" data={pdf} type="application/pdf">
+            <div class="pdf-fallback">
+              <p>The PDF will appear here.</p>
+              <p>
+                <a href={pdf}>Open the PDF</a>
+              </p>
+            </div>
+          </object>
+        </div>
+      </main>
+    ) : (
+      <main class="stub">
+        <p class="back"><a href="/">← Ismael Duran</a></p>
+        <h1>{title}</h1>
+        <p class="soon">More soon.</p>
+      </main>
+    )
+  }
+</Base>
+
+<style>
+  .back {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+    margin: 0 0 2.5rem;
+  }
+
+  /* ---- Blank stub (demos / apps) ---- */
+  .stub {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: clamp(3rem, 12vh, 9rem) 1.5rem 4rem;
+    min-height: 100vh;
+  }
+
+  .stub h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 6vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--text);
+    margin: 0 0 0.75rem;
+    max-width: 20ch;
+  }
+
+  .soon {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  /* ---- PDF page (research) — centered & symmetric ---- */
+  .pdf-page {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: clamp(2.5rem, 8vh, 5rem) 1.5rem 5rem;
+    min-height: 100vh;
+    text-align: center;
+  }
+
+  /* Back link stays at the top-left while the rest of the page is centered. */
+  .pdf-page .back {
+    text-align: left;
+  }
+
+  /* Document-proportioned, centered PDF container. */
+  .pdf-frame {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    aspect-ratio: 8.5 / 11;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+
+  .pdf-object {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .pdf-fallback {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+</style>

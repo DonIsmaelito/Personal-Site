@@ -1,0 +1,10 @@
+# Repo-only working files — kept in the repo but not needed for the built site,
+# so they are excluded from deploy uploads.
+egobench_report/
+personal-site-components/
+
+# Redundant root copies of papers (the served versions live in public/papers/)
+/*.pdf
+
+# Source portrait — the served avatar lives at public/me.jpg
+/*.heic

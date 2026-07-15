@@ -1,0 +1,108 @@
+/*
+  Flexoki-inspired palette (by Steph Ango — https://stephango.com/flexoki).
+  An inky, warm, paper-and-ink theme tuned for long-form reading.
+*/
+:root {
+  /* Paper / ink */
+  --paper: #fffcf0;
+  --base-50: #f2f0e5;
+  --base-100: #e6e4d9;
+  --base-150: #dad8ce;
+  --base-300: #b7b5ac;
+  --base-600: #6f6e69;
+  --base-900: #1c1b1a;
+  --black: #100f0f;
+
+  /* Accents */
+  --blue: #205ea6;
+  --cyan: #24837b;
+
+  /* Semantic */
+  --bg: var(--paper);
+  --surface: var(--base-50);
+  --text: var(--black);
+  --text-muted: var(--base-600);
+  --border: var(--base-150);
+  --link: var(--blue);
+
+  --font-serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua',
+    Georgia, serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', 'Fira Code', Menlo,
+    Consolas, monospace;
+
+  --measure: 68ch;
+  /* Target max width for the multi-column sections band, so the three columns
+     can breathe past the 68ch reading measure while prose (header / intro)
+     stays constrained for comfortable line length. The viewport clamp lives in
+     the .sections-grid rule itself (min(--measure-wide, 100vw - …)); keeping
+     this token a plain length avoids a `100%` that would resolve against the
+     constrained <main> box and defeat the breakout. */
+  --measure-wide: 62rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: var(--black);
+    --surface: var(--base-900);
+    --text: var(--base-100);
+    --text-muted: var(--base-300);
+    --border: #282726;
+    --link: #4385be;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--link) 35%, transparent);
+  transition: border-color 0.15s ease;
+}
+
+a:hover {
+  border-bottom-color: var(--link);
+}
+
+/*
+  Shared section heading ("Experiences" / "Apps" / "Agents" / "Research"), used
+  by both Section.astro and ExperienceSection.astro. Matches the "Ismael Duran"
+  h1 (serif, 600, tight tracking, full-contrast --text), now at a prominent
+  1.6rem so the section heros read as real headings above their columns.
+  Replaces the old muted-mono .section-label rule, removed from both components.
+*/
+.section-heading {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin: 0 0 1.5rem;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--cyan) 25%, transparent);
+}
