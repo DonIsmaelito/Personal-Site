@@ -1,0 +1,415 @@
+---
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import ExperienceSection from '../components/ExperienceSection.astro';
+---
+
+<Base title="Ismael Duran · Personal Site">
+  <main>
+    <header>
+      <div class="name-row">
+        {/* Portrait cropped from ps_image.heic (dusk shot on campus) to a clean
+            head-and-shoulders square, exported web-ready. alt="" is intentional:
+            the adjacent h1 already names me, so a decorative photo avoids a
+            screen reader announcing the name twice (mirrors the logo marks in
+            ExperienceSection). */}
+        <img
+          class="avatar"
+          src="/me.jpg"
+          alt=""
+          width="88"
+          height="88"
+          decoding="async"
+        />
+        <h1>Ismael Duran</h1>
+      </div>
+      <p class="tagline">
+        Hi, nice to meet you. Here is my
+        <a
+          href="https://github.com/DonIsmaelito"
+          target="_blank"
+          rel="noopener noreferrer">Github</a>,
+        <a
+          href="https://www.linkedin.com/in/ismael-arechiga-duran/"
+          target="_blank"
+          rel="noopener noreferrer">LinkedIn</a>, and
+        <a
+          href="https://www.instagram.com/_ismaelduran"
+          target="_blank"
+          rel="noopener noreferrer">Instagram</a> :)
+      </p>
+    </header>
+
+    <section class="tldr">
+      <h2 class="section-heading">TL;DR</h2>
+      <ul class="tldr-list">
+        <li>
+          Just finished my third year at Stanford, and I'm after a (very)
+          last-minute internship.
+        </li>
+        <li>
+          My experience with jobs and projects is all over the place because I
+          pivoted into AI my sophomore year, but I generally enjoy working on
+          hard technical problems. Some things I'm currently interested in:
+          <ul class="tldr-sublist">
+            <li>
+              Building agentic systems that solve complex problems, including
+              harnesses and custom tooling
+            </li>
+            <li>Building multimodal data pipelines</li>
+            <li>Designing, training, and improving models</li>
+            <li>
+              Understanding user wants and quickly building to meet their needs
+            </li>
+            <li>
+              Researching up-to-date ML techniques like diffusion, reinforcement
+              learning, computer vision, and geometric ML
+            </li>
+            <li>Benchmarking harnesses and models</li>
+          </ul>
+        </li>
+        <li>
+          I can play many roles if I have to. I can go all the way from bare
+          metal, code, and execution to strategy, leadership, and growth.
+        </li>
+        <li>
+          I'm a lifelong Real Madrid fan, and soccer is a hobby I regularly
+          practice and watch. Crossing my fingers for Mexico this World Cup.
+        </li>
+        <li>
+          Another fun fact about me is that I play poker competitively and have
+          participated in 10+ tournaments throughout college so far. Really
+          looking forward to any home games, and can host too!
+        </li>
+      </ul>
+    </section>
+
+    <div class="sections-grid">
+      <ExperienceSection
+        title="Work History"
+        inGrid
+        entries={[
+          {
+            image: '/experiences/amazon-mark.png',
+            name: 'Amazon Lab126',
+            role: 'HDE Intern',
+            meta: '2025',
+            description:
+              'Amazon is creating a foldable device and I was tasked to predict visible crease on foldable phones. I measured crease via folding-cycles/closed-state and used a laser-microscope to track increasing crease width. Compiled a dataset of this data and trained a model to predict how much usage it takes to see visible crease on most foldable devices.',
+          },
+          {
+            image: '/experiences/amazon-mark.png',
+            name: 'Amazon Lab126',
+            role: 'HDE Intern',
+            meta: '2024',
+            description:
+              "I vectorized a dataset of customer reviews on Amazon's EchoBuds and ran top-k means to pinpoint an issue to fix. The ear-tip getting stuck on customer ears was the bud's biggest pain point, so I built an ear-tip retention dataset with an Instron machine and trained a regression-based model to predict the minimum retention force the ear-tip needed to hold.",
+          },
+          {
+            image: '/experiences/jane-mark.png',
+            name: 'Jane Street',
+            role: 'Unboxed Fellow',
+            meta: '2023',
+            description:
+              'Before my freshman year at Stanford, I was invited to join an intensive three-week hybrid program where Jane Street traders taught us SQL, combinatorics, and ETF trading. I came away with a $2,000 scholarship toward school expenses.',
+          },
+          {
+            image: '/experiences/renu-mark.png',
+            name: 'Renu Robotics',
+            role: 'Engineering Intern',
+            meta: '2023',
+            description:
+              "I built ROS2 data-analysis tools that measured how wheel rotational frequencies shifted across terrains for the autonomous robots that mow solar fields, then validated them against Renu's own Renubot simulation model in Rviz.",
+          },
+        ]}
+      />
+
+      <div class="col-stack">
+        <Section
+          title="Apps"
+          inGrid
+          entries={[
+            {
+              title: 'clippa.app',
+              href: 'https://clippa.app',
+              description:
+                "Built a multimodal pipeline that would take a stream, find the 'viral' moments, and turn them into TikTok-ready clips. I created my own mobile-first web app (a TikTok clone without the algorithm) that showcases these artificial clips of trending streamers.",
+            },
+            {
+              title: 'holdem-ai.com',
+              href: 'https://holdem-ai.com',
+              description:
+                "With a close friend, I built a PokerNow clone where you can drop different AI models into your table to play alongside you and your friends. We even threw a 'bug-find' party on campus to beta test it and squash issues.",
+            },
+          ]}
+        />
+
+        <Section
+          title="Research"
+          inGrid
+          entries={[
+            {
+              title: 'Sample-Efficient Reinforcement Learning for Video Agents',
+              href: '/p/sample-efficient-rl-for-video-agents',
+              description:
+                'After WatchAgent, I wanted to train a policy to maximize agent rewards in a similar video-understanding environment.',
+            },
+            {
+              title: 'flashattention_kernel',
+              href: '/p/flashattention-kernel',
+              description:
+                'Designed a hardware accelerator kernel for FlashAttention inference.',
+            },
+            {
+              title: 'TidyBot',
+              href: 'https://sites.google.com/stanford.edu/group1theguineapigs/home?authuser=0',
+              description:
+                "For a Collaborative Robotics class, our team built infrastructure that lets a bimanual TidyBot hear 'pick up X,' explore to find it, then grab it and place it in the user's hand. I designed the state machine and supported the PhDs on the team with smaller components.",
+            },
+            {
+              title: 'EgoBench',
+              href: '/p/egobench',
+              description:
+                'A benchmark that assesses how effectively egocentric video data is used for robot training.',
+            },
+          ]}
+        />
+      </div>
+
+      <div class="col-stack">
+        <Section
+          title="Deep Learning"
+          inGrid
+          entries={[
+            {
+              title: 'Placeholder entry',
+              description:
+                "Scaffolded so you can see this section sitting above Agents. Send me the real entries and I'll swap them in — or say the word and I'll move your RL / FlashAttention / EgoBench items here from Research.",
+            },
+            {
+              title: 'Placeholder entry',
+              description:
+                'Each entry can have a title, an optional link (opens a paper or demo, with the ↗ marker), and a one-line description — same shape as your other sections.',
+            },
+          ]}
+        />
+
+        <Section
+          title="Agents"
+          inGrid
+          entries={[
+            {
+              title: 'WatchAgent',
+              href: '/p/watchagent',
+              description:
+                'I designed a harness that gives a reasoner video understanding. Benchmarked it on subsets of Video-MME, EgoSchema, and WorldQA. It ended up beating many other harnesses and models.',
+            },
+            {
+              title: 'Co-Scientist',
+              href: 'https://www.loom.com/share/566403785fef4f2785e300bfc5880bd2',
+              description:
+                "Along with two other peers, we built a deep-research agent for Discord channels. It's a multi-agent system with efficient context pipelines into major venues like arXiv and PubMed.",
+            },
+            {
+              title: 'MedMinute',
+              href: 'https://drive.google.com/file/d/14G-TwpP49-4w6Uy0CuSLGhijgDdDIPmY/view?usp=vids_web',
+              description:
+                'A local form-filling platform where people can talk, type, or pull from existing PDFs to complete blank forms. It was really just RAG with a few extra steps.',
+            },
+            {
+              title: 'Doxxing-Detection Bot',
+              href: 'https://drive.google.com/file/d/1gKbbb8InGe5QK673eAH69f6UzZwnb_nc/view?usp=sharing',
+              description:
+                'With some friends, we built a Discord trust & safety feature that detects doxxing within a channel and applies consequences automatically.',
+            },
+          ]}
+        />
+      </div>
+    </div>
+  </main>
+</Base>
+
+<style>
+  main {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: clamp(3rem, 12vh, 9rem) 1.5rem 4rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    margin-bottom: 2.5rem;
+  }
+
+  /* Avatar + wordmark on one row, photo to the left of the name. The row carries
+     the space above the tagline (the h1's old bottom margin) so flex centering
+     aligns the circle to the name's optical middle. */
+  .name-row {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.9rem, 2.5vw, 1.25rem);
+    margin-bottom: 0.75rem;
+  }
+
+  /* Circular head-and-shoulders portrait, sized a hair taller than the wordmark
+     and scaling with it. object-fit: cover centers the square source;
+     flex-shrink:0 stops the circle squashing when a long name wraps on narrow
+     screens; the 1px ring gives definition on both paper and dark backgrounds. */
+  .avatar {
+    flex-shrink: 0;
+    width: clamp(64px, 13vw, 92px);
+    height: clamp(64px, 13vw, 92px);
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin: 0;
+  }
+
+  .tagline {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    margin: 0;
+    max-width: none;
+  }
+
+  /* TL;DR band — breaks out to the same width as the columns band below, so the
+     single-column bullet sentences stretch across the full width and use the
+     space instead of leaving the right side blank. Centered on the same axis as
+     the columns band; on small viewports the band clamp makes it full-width. */
+  .tldr {
+    --band: min(var(--measure-wide), 100vw - 3rem);
+    width: var(--band);
+    margin-inline: calc(50% - var(--band) / 2);
+    border-top: 1px solid var(--border);
+    padding-top: 2.5rem;
+  }
+
+  /* Dash-marked bullets in the page's serif body voice: full-contrast text with
+     a muted em-dash marker, hung in a 1.6rem gutter so wrapped lines align. */
+  .tldr-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .tldr-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    line-height: 1.5;
+    color: var(--text);
+  }
+
+  .tldr-list li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+  }
+
+  /* Nested sub-list under a TL;DR point (the "currently interested in" items).
+     A dotted marker, slightly muted, indented under the parent point. */
+  .tldr-sublist {
+    list-style: none;
+    margin: 0.55rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .tldr-sublist li {
+    color: var(--text-muted);
+  }
+
+  .tldr-sublist li::before {
+    content: '·';
+    color: var(--text-muted);
+  }
+
+  /* ---- Columns band ----
+     <main> is capped at --measure (68ch), and a normal child can't exceed that
+     box — so this ONE band escapes main's content box to breathe.
+
+     --band is the target width: as wide as --measure-wide (62rem) but never
+     wider than the viewport minus main's 1.5rem L/R padding, so there is never
+     a horizontal scrollbar on small screens. (--measure-wide is a plain length,
+     not min(…,100%), specifically so this isn't re-clamped to main's box.)
+
+     margin-inline: calc(50% - --band/2) recentres the band on main's centre
+     axis — the same axis the viewport is centred on — so header/intro prose
+     stays put at 68ch while the columns spread wider. When --band can't exceed
+     main's box (small viewports) the calc is ~0 and it degrades to a normal
+     full-width child. A short accent divider sits above the columns (see
+     ::before); columns are borderless (Section `inGrid`) and top-aligned. */
+  .sections-grid {
+    --band: min(var(--measure-wide), 100vw - 3rem);
+    width: var(--band);
+    margin-top: 2.5rem;
+    margin-inline: calc(50% - var(--band) / 2);
+    position: relative;
+    padding-top: 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  /* Short divider above the columns band — replaces the old full-width hairline
+     with a brief, centered accent rule between the TL;DR and the columns.
+     Absolutely positioned so it stays out of the grid flow; color-mixed a touch
+     stronger than the faint hairline so the short segment reads clearly. */
+  .sections-grid::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 7rem;
+    height: 1px;
+    background: color-mix(in srgb, var(--text-muted) 45%, transparent);
+  }
+
+  /* Work History stretches to the taller second column's height and spreads its
+     entries to even out the two columns — set from inside ExperienceSection
+     (.section.in-grid), since Astro's scoped styles here can't reach a child
+     component's root element. */
+
+  /* The second column stacks two sections (Apps over Research) as one grid
+     cell. min-width:0 lets it clamp to the grid track; the 3rem gap + the
+     large section heros keep the sub-sections clearly distinct. */
+  .col-stack {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  /* Tablets / small laptops: drop the three columns to two. */
+  @media (max-width: 54rem) {
+    .sections-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2rem;
+    }
+  }
+
+  /* Phones: single stacked column. */
+  @media (max-width: 34rem) {
+    .sections-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+</style>
