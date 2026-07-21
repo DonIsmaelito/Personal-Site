@@ -39,7 +39,7 @@
      the .sections-grid rule itself (min(--measure-wide, 100vw - …)); keeping
      this token a plain length avoids a `100%` that would resolve against the
      constrained <main> box and defeat the breakout. */
-  --measure-wide: 62rem;
+  --measure-wide: 78rem;
 }
 
 @media (prefers-color-scheme: dark) {

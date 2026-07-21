@@ -2,6 +2,17 @@
 import Base from '../layouts/Base.astro';
 import Section from '../components/Section.astro';
 import ExperienceSection from '../components/ExperienceSection.astro';
+
+// Project entries (Apps / Research / Deep Learning / Agents) are moving from a
+// single blurb to a bulleted list. `bullets(summary)` keeps the old blurb as the
+// first bullet and scaffolds three more placeholder points to fill in later.
+// Work History stays prose, so it doesn't use this.
+const bullets = (summary: string): string[] => [
+  summary,
+  'Second point — replace with a real bullet.',
+  'Third point — replace with a real bullet.',
+  'Fourth point — replace with a real bullet.',
+];
 ---
 
 <Base title="Ismael Duran · Personal Site">
@@ -132,20 +143,23 @@ import ExperienceSection from '../components/ExperienceSection.astro';
             {
               title: 'Peck',
               href: 'https://peck.insforge.site',
-              description:
-                'A gamified mobile app that turns data labeling into quick, one-minute game levels. As your dataset grows, you can easily access it with an API call.',
+              bullets: bullets(
+                'A gamified mobile app that turns data labeling into quick, one-minute game levels. As your dataset grows, you can easily access it with an API call.'
+              ),
             },
             {
-              title: 'clippa.app',
+              title: 'Clippa',
               href: 'https://clippa.app',
-              description:
-                "Built a multimodal pipeline that would take a stream, find the 'viral' moments, and turn them into TikTok-ready clips. I created my own mobile-first web app (a TikTok clone without the algorithm) that showcases these artificial clips of trending streamers.",
+              bullets: bullets(
+                "Built a multimodal pipeline that would take a stream, find the 'viral' moments, and turn them into TikTok-ready clips. I created my own mobile-first web app (a TikTok clone without the algorithm) that showcases these artificial clips of trending streamers."
+              ),
             },
             {
-              title: 'holdem-ai.com',
+              title: 'Holdem-AI',
               href: 'https://holdem-ai.com',
-              description:
-                "With a close friend, I built a PokerNow clone where you can drop different AI models into your table to play alongside you and your friends. We even threw a 'bug-find' party on campus to beta test it and squash issues.",
+              bullets: bullets(
+                "With a close friend, I built a PokerNow clone where you can drop different AI models into your table to play alongside you and your friends. We even threw a 'bug-find' party on campus to beta test it and squash issues."
+              ),
             },
           ]}
         />
@@ -157,26 +171,30 @@ import ExperienceSection from '../components/ExperienceSection.astro';
             {
               title: 'Sample-Efficient Reinforcement Learning for Video Agents',
               href: '/p/sample-efficient-rl-for-video-agents',
-              description:
-                'After WatchAgent, I wanted to train a policy to maximize agent rewards in a similar video-understanding environment.',
+              bullets: bullets(
+                'After WatchAgent, I wanted to train a policy to maximize agent rewards in a similar video-understanding environment.'
+              ),
             },
             {
               title: 'flashattention_kernel',
               href: '/p/flashattention-kernel',
-              description:
-                'Designed a hardware accelerator kernel for FlashAttention inference.',
+              bullets: bullets(
+                'Designed a hardware accelerator kernel for FlashAttention inference.'
+              ),
             },
             {
               title: 'TidyBot',
               href: 'https://sites.google.com/stanford.edu/group1theguineapigs/home?authuser=0',
-              description:
-                "For a Collaborative Robotics class, our team built infrastructure that lets a bimanual TidyBot hear 'pick up X,' explore to find it, then grab it and place it in the user's hand. I designed the state machine and supported the PhDs on the team with smaller components.",
+              bullets: bullets(
+                "For a Collaborative Robotics class, our team built infrastructure that lets a bimanual TidyBot hear 'pick up X,' explore to find it, then grab it and place it in the user's hand. I designed the state machine and supported the PhDs on the team with smaller components."
+              ),
             },
             {
               title: 'EgoBench',
               href: '/p/egobench',
-              description:
-                'A benchmark that assesses how effectively egocentric video data is used for robot training.',
+              bullets: bullets(
+                'A benchmark that assesses how effectively egocentric video data is used for robot training.'
+              ),
             },
           ]}
         />
@@ -189,13 +207,15 @@ import ExperienceSection from '../components/ExperienceSection.astro';
           entries={[
             {
               title: 'Placeholder entry',
-              description:
-                "Scaffolded so you can see this section sitting above Agents. Send me the real entries and I'll swap them in — or say the word and I'll move your RL / FlashAttention / EgoBench items here from Research.",
+              bullets: bullets(
+                "Scaffolded so you can see this section sitting above Agents. Send me the real entries and I'll swap them in — or say the word and I'll move your RL / FlashAttention / EgoBench items here from Research."
+              ),
             },
             {
               title: 'Placeholder entry',
-              description:
-                'Each entry can have a title, an optional link (opens a paper or demo, with the ↗ marker), and a one-line description — same shape as your other sections.',
+              bullets: bullets(
+                'Each entry can have a title, an optional link (opens a paper or demo, with the ↗ marker), and a one-line description — same shape as your other sections.'
+              ),
             },
           ]}
         />
@@ -207,26 +227,30 @@ import ExperienceSection from '../components/ExperienceSection.astro';
             {
               title: 'WatchAgent',
               href: '/p/watchagent',
-              description:
-                'I designed a harness that gives a reasoner video understanding. Benchmarked it on subsets of Video-MME, EgoSchema, and WorldQA. It ended up beating many other harnesses and models.',
+              bullets: bullets(
+                'I designed a harness that gives a reasoner video understanding. Benchmarked it on subsets of Video-MME, EgoSchema, and WorldQA. It ended up beating many other harnesses and models.'
+              ),
             },
             {
               title: 'Co-Scientist',
               href: 'https://www.loom.com/share/566403785fef4f2785e300bfc5880bd2',
-              description:
-                "Along with two other peers, we built a deep-research agent for Discord channels. It's a multi-agent system with efficient context pipelines into major venues like arXiv and PubMed.",
+              bullets: bullets(
+                "Along with two other peers, we built a deep-research agent for Discord channels. It's a multi-agent system with efficient context pipelines into major venues like arXiv and PubMed."
+              ),
             },
             {
               title: 'MedMinute',
               href: 'https://drive.google.com/file/d/14G-TwpP49-4w6Uy0CuSLGhijgDdDIPmY/view?usp=vids_web',
-              description:
-                'A local form-filling platform where people can talk, type, or pull from existing PDFs to complete blank forms. It was really just RAG with a few extra steps.',
+              bullets: bullets(
+                'A local form-filling platform where people can talk, type, or pull from existing PDFs to complete blank forms. It was really just RAG with a few extra steps.'
+              ),
             },
             {
               title: 'Doxxing-Detection Bot',
               href: 'https://drive.google.com/file/d/1gKbbb8InGe5QK673eAH69f6UzZwnb_nc/view?usp=sharing',
-              description:
-                'With some friends, we built a Discord trust & safety feature that detects doxxing within a channel and applies consequences automatically.',
+              bullets: bullets(
+                'With some friends, we built a Discord trust & safety feature that detects doxxing within a channel and applies consequences automatically.'
+              ),
             },
           ]}
         />
@@ -305,6 +329,10 @@ import ExperienceSection from '../components/ExperienceSection.astro';
   .tldr-list {
     list-style: none;
     margin: 0;
+    /* The band widened for the columns below, but single-column prose reads
+       poorly at that width — cap the text measure so lines stay comfortable
+       while the band's top rule still spans the full width above the columns. */
+    max-width: 72ch;
     padding: 0;
     display: flex;
     flex-direction: column;

@@ -3,7 +3,13 @@ interface Entry {
   title: string;
   href?: string;
   meta?: string;
+  /** Single-paragraph blurb. Used when `bullets` is absent (keeps the component
+   *  reusable for prose-style sections). */
   description?: string;
+  /** Bulleted points shown under the title. When present, these render as a
+   *  dash-marked list and take precedence over `description`. The first bullet
+   *  typically carries the summary the `description` used to hold. */
+  bullets?: string[];
 }
 
 interface Props {
@@ -52,7 +58,15 @@ const isExternal = (href?: string): boolean =>
             )}
             {entry.meta && <span class="entry-meta">{entry.meta}</span>}
           </div>
-          {entry.description && <p class="entry-desc">{entry.description}</p>}
+          {entry.bullets && entry.bullets.length > 0 ? (
+            <ul class="entry-bullets" role="list">
+              {entry.bullets.map((point) => (
+                <li>{point}</li>
+              ))}
+            </ul>
+          ) : (
+            entry.description && <p class="entry-desc">{entry.description}</p>
+          )}
         </li>
       ))
     }
@@ -161,9 +175,37 @@ const isExternal = (href?: string): boolean =>
 
   .entry-desc {
     margin: 0.4rem 0 0;
-    max-width: 56ch;
     font-size: 1rem;
     line-height: 1.5;
+    color: var(--text-muted);
+  }
+
+  /* Dash-marked bullets under an entry title, mirroring the TL;DR list voice but
+     at the muted description colour and size so they read as supporting points.
+     The marker is hung in a 1.4rem gutter so wrapped lines align under the text,
+     not under the dash. */
+  .entry-bullets {
+    list-style: none;
+    margin: 0.55rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .entry-bullets li {
+    position: relative;
+    padding-left: 1.4rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    overflow-wrap: anywhere;
+  }
+
+  .entry-bullets li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
     color: var(--text-muted);
   }
 
