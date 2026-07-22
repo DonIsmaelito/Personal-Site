@@ -4,6 +4,7 @@ interface Entry {
   href?: string;
   meta?: string;
   description?: string;
+  details?: string[];
 }
 
 interface Props {
@@ -53,6 +54,11 @@ const isExternal = (href?: string): boolean =>
             {entry.meta && <span class="entry-meta">{entry.meta}</span>}
           </div>
           {entry.description && <p class="entry-desc">{entry.description}</p>}
+          {entry.details && (
+            <ul class="entry-details">
+              {entry.details.map((detail) => <li>{detail}</li>)}
+            </ul>
+          )}
         </li>
       ))
     }
@@ -165,6 +171,29 @@ const isExternal = (href?: string): boolean =>
     font-size: 1rem;
     line-height: 1.5;
     color: var(--text-muted);
+  }
+
+  .entry-details {
+    margin: 0.65rem 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+
+  .entry-details li {
+    position: relative;
+    padding-left: 1rem;
+  }
+
+  .entry-details li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
   }
 
   @media (max-width: 30rem) {

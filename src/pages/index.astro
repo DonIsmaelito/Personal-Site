@@ -136,16 +136,26 @@ import ExperienceSection from '../components/ExperienceSection.astro';
                 'A gamified mobile app that turns data labeling into quick, one-minute game levels. As your dataset grows, you can easily access it with an API call.',
             },
             {
-              title: 'clippa.app',
+              title: 'Clippa',
               href: 'https://clippa.app',
               description:
-                "Built a multimodal pipeline that would take a stream, find the 'viral' moments, and turn them into TikTok-ready clips. I created my own mobile-first web app (a TikTok clone without the algorithm) that showcases these artificial clips of trending streamers.",
+                'A web app that lets users turn multi-hour streams into edited, TikTok-style clips in under three minutes for free.',
+              details: [
+                "Built a Python pipeline that takes a raw MP4 or YouTube link, pulls the transcript from YouTube captions for free (or runs a small ASR model on ffmpeg-extracted audio when captions are unavailable), and gives it to a large reasoning model that picks the best moments in one pass. ffmpeg then cuts and renders 10 vertical clips with burned-in captions, costing around $$ per hour of input footage.",
+                "Shaved 17% off each clip's file size by freezing the blurred background to a single frame so only the content moves.",
+                'Built a live Twitch Top 100 grid where every visitor shares one cached Twitch API call, keeping playback fast and smooth.',
+                'Reached 36 users with very minimal TikTok advertising.',
+              ],
             },
             {
-              title: 'holdem-ai.com',
+              title: 'Holdem AI',
               href: 'https://holdem-ai.com',
               description:
-                "With a close friend, I built a PokerNow clone where you can drop different AI models into your table to play alongside you and your friends. We even threw a 'bug-find' party on campus to beta test it and squash issues.",
+                'A web app where people can play no-limit hold\'em against five AI models—Claude, ChatGPT, Grok, Gemini, and DeepSeek—that reason through each hand, either solo or at multiplayer tables.',
+              details: [
+                'Built multiplayer with the open-source Colyseus Node.js server framework, which handles real-time state synchronization and game updates.',
+                "Built the context and action system for each poker bot. Before acting, a model receives its equity, pot odds, outs, position, and a short read on each opponent's play, then returns a legal poker move.",
+              ],
             },
           ]}
         />
@@ -208,13 +218,22 @@ import ExperienceSection from '../components/ExperienceSection.astro';
               title: 'WatchAgent',
               href: '/p/watchagent',
               description:
-                'I designed a harness that gives a reasoner video understanding. Benchmarked it on subsets of Video-MME, EgoSchema, and WorldQA. It ended up beating many other harnesses and models.',
+                'Built a six-tool video-understanding agent harness that lets an orchestrator inspect video, audio, and transcripts to find exact query moments cheaply.',
+              details: [
+                'Benchmarked the harness on long-form subsets of Video-MME, WorldQA, and EgoSchema, outperforming agent systems built on proprietary GPT-4 and GPT-4o reasoners.',
+                'Built an evaluation pipeline on Modal GPUs because the main reasoner was Qwen2.5-32B and one tool used Qwen2.5-VL-7B for inference.',
+                'Rented a CPU container and an H100 container from Modal. The CPU worker pulls fixed batches of benchmark videos and questions from Hugging Face, runs the harness, and calls Qwen on the separate H100 container through vLLM.',
+                "The harnesses 'watched' more than 500 videos and answered over 1,000 questions using less than $100 in Modal credits.",
+              ],
             },
             {
               title: 'Co-Scientist',
               href: 'https://www.loom.com/share/566403785fef4f2785e300bfc5880bd2',
               description:
-                "Along with two other peers, we built a deep-research agent for Discord channels. It's a multi-agent system with efficient context pipelines into major venues like arXiv and PubMed.",
+                'Along with two peers, built a deep-research agent with a multi-agent architecture. A principal investigator receives the query, creates a research plan, and spins up specialized agents that gather technical context through the arXiv and PubMed APIs.',
+              details: [
+                'Built the API context pipelines that find relevant papers and clean large token batches by stripping abstracts, related work, and citations with regex, reducing agent input tokens by 35%.',
+              ],
             },
             {
               title: 'MedMinute',
