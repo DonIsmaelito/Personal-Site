@@ -4,7 +4,7 @@ interface Entry {
   href?: string;
   meta?: string;
   description?: string;
-  details?: string[];
+  bullets?: string[];
 }
 
 interface Props {
@@ -53,11 +53,12 @@ const isExternal = (href?: string): boolean =>
             )}
             {entry.meta && <span class="entry-meta">{entry.meta}</span>}
           </div>
-          {entry.description && <p class="entry-desc">{entry.description}</p>}
-          {entry.details && (
-            <ul class="entry-details">
-              {entry.details.map((detail) => <li>{detail}</li>)}
+          {entry.bullets && entry.bullets.length > 0 ? (
+            <ul class="entry-bullets" role="list">
+              {entry.bullets.map((point) => <li>{point}</li>)}
             </ul>
+          ) : (
+            entry.description && <p class="entry-desc">{entry.description}</p>
           )}
         </li>
       ))
@@ -173,27 +174,29 @@ const isExternal = (href?: string): boolean =>
     color: var(--text-muted);
   }
 
-  .entry-details {
-    margin: 0.65rem 0 0;
+  .entry-bullets {
+    margin: 0.55rem 0 0;
     padding: 0;
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 0.45rem;
-    font-size: 0.95rem;
+    gap: 0.4rem;
+  }
+
+  .entry-bullets li {
+    position: relative;
+    padding-left: 1.4rem;
+    font-size: 1rem;
     line-height: 1.5;
     color: var(--text-muted);
+    overflow-wrap: anywhere;
   }
 
-  .entry-details li {
-    position: relative;
-    padding-left: 1rem;
-  }
-
-  .entry-details li::before {
-    content: '·';
+  .entry-bullets li::before {
+    content: '–';
     position: absolute;
     left: 0;
+    color: var(--text-muted);
   }
 
   @media (max-width: 30rem) {

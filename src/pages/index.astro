@@ -138,23 +138,21 @@ import ExperienceSection from '../components/ExperienceSection.astro';
             {
               title: 'Clippa',
               href: 'https://clippa.app',
-              description:
-                'A web app that lets users turn multi-hour streams into edited, TikTok-style clips in under three minutes for free.',
-              details: [
-                "Built a Python pipeline that takes a raw MP4 or YouTube link, pulls the transcript from YouTube captions for free (or runs a small ASR model on ffmpeg-extracted audio when captions are unavailable), and gives it to a large reasoning model that picks the best moments in one pass. ffmpeg then cuts and renders 10 vertical clips with burned-in captions, costing around $$ per hour of input footage.",
-                "Shaved 17% off each clip's file size by freezing the blurred background to a single frame so only the content moves.",
-                'Built a live Twitch Top 100 grid where every visitor shares one cached Twitch API call, keeping playback fast and smooth.',
-                'Reached 36 users with very minimal TikTok advertising.',
+              bullets: [
+                'A web app that lets users turn their multi-hour streams into edited TikTok-style clips in under 3 minutes for free',
+                "Built a Python pipeline that takes a raw mp4 or a YouTube link, pulls the transcript straight from YouTube's captions for free (or runs a small ASR model on the ffmpeg-extracted audio when there aren't any), then hands the transcript to a large reasoning model that reads it in a single pass to pick the moments. ffmpeg then cuts and renders a fixed 10 vertical clips with burned-in captions, costing me around $$ per hour of input footage.",
+                "Shaved 17% off each clip's file size by freezing the blurred background down to a single frame so only the content moves",
+                'Built a live Twitch Top-100 grid where every visitor shares one cached call to Twitch instead of each browser hitting the API so it plays fast and smooth on my site',
+                'Obtained 36 users with very minimal advertisement of clippa on tiktok',
               ],
             },
             {
-              title: 'Holdem AI',
+              title: 'Holdem-AI',
               href: 'https://holdem-ai.com',
-              description:
-                'A web app where people can play no-limit hold\'em against five AI models—Claude, ChatGPT, Grok, Gemini, and DeepSeek—that reason through each hand, either solo or at multiplayer tables.',
-              details: [
-                'Built multiplayer with the open-source Colyseus Node.js server framework, which handles real-time state synchronization and game updates.',
-                "Built the context and action system for each poker bot. Before acting, a model receives its equity, pot odds, outs, position, and a short read on each opponent's play, then returns a legal poker move.",
+              bullets: [
+                'A web app that lets people play NLH against 5 AI models (Claude, ChatGPT, Grok, Gemini, and DeepSeek) that actually reason about each hand, solo or in multiplayer tables',
+                'Built out the multiplayer feature using an open-source node server framework (Colyseus) that handled real-time syncing and game updates.',
+                "Built the context and action system for each poker bot. Before a model acts, it's given its equity, pot odds, outs, position, and a short read on how each opponent has been playing. It outputs a legal poker move as its action.",
               ],
             },
           ]}
@@ -217,22 +215,20 @@ import ExperienceSection from '../components/ExperienceSection.astro';
             {
               title: 'WatchAgent',
               href: '/p/watchagent',
-              description:
-                'Built a six-tool video-understanding agent harness that lets an orchestrator inspect video, audio, and transcripts to find exact query moments cheaply.',
-              details: [
-                'Benchmarked the harness on long-form subsets of Video-MME, WorldQA, and EgoSchema, outperforming agent systems built on proprietary GPT-4 and GPT-4o reasoners.',
-                'Built an evaluation pipeline on Modal GPUs because the main reasoner was Qwen2.5-32B and one tool used Qwen2.5-VL-7B for inference.',
-                'Rented a CPU container and an H100 container from Modal. The CPU worker pulls fixed batches of benchmark videos and questions from Hugging Face, runs the harness, and calls Qwen on the separate H100 container through vLLM.',
-                "The harnesses 'watched' more than 500 videos and answered over 1,000 questions using less than $100 in Modal credits.",
+              bullets: [
+                'Built a 6 tool video-understanding agent harness that lets and orchestrator inspect video, audio, and transcript to find exact query moments cheaply',
+                'Benchmarked the harness on long-form subsets of Video-MME, WorldQA, and EgoSchema, beating agent systems built on proprietary GPT-4/GPT-4o reasoners',
+                'Built an evaluation pipeline for my harness using Modal GPUs since the main reasoner was Qwen2.5-32B and one of my tools called Qwen2.5-VL-7B for inference.',
+                'Built the evaluation pipeline by renting a CPU container and a H100 container from Modal. The CPU worker grabs a fixed batch of videos + q/a from the benchmark on HuggingFace and runs the harness, which calls Qwen from a separate H100 container via vLLM',
+                'The harnesses ‘watched’ over 500 videos and answered more than a 1,000 questions all under 100 bucks of Modal credits',
               ],
             },
             {
               title: 'Co-Scientist',
               href: 'https://www.loom.com/share/566403785fef4f2785e300bfc5880bd2',
-              description:
-                'Along with two peers, built a deep-research agent with a multi-agent architecture. A principal investigator receives the query, creates a research plan, and spins up specialized agents that gather technical context through the arXiv and PubMed APIs.',
-              details: [
-                'Built the API context pipelines that find relevant papers and clean large token batches by stripping abstracts, related work, and citations with regex, reducing agent input tokens by 35%.',
+              bullets: [
+                'Along with two other peers, we built a deep-research agent leveraging a multi-agent system architecture. A principal investigator agent would receive the query, and spin up N specialized agents to tackle the research plan created by the PI. Each of these agents obtained technical context from Arxiv and Pubmed APIs',
+                'I built the context pipelines that would call these APIs, find the relevant papers, and clean the large batch of tokens by stripping abstracts, relevant work, and citations using regex. This minimized 35% of agent token input.',
               ],
             },
             {
