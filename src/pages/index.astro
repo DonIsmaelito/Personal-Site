@@ -28,15 +28,7 @@ import ExperienceSection from '../components/ExperienceSection.astro';
         <a
           href="https://github.com/DonIsmaelito"
           target="_blank"
-          rel="noopener noreferrer">Github</a>,
-        <a
-          href="https://www.linkedin.com/in/ismael-arechiga-duran/"
-          target="_blank"
-          rel="noopener noreferrer">LinkedIn</a>, and
-        <a
-          href="https://www.instagram.com/_ismaelduran"
-          target="_blank"
-          rel="noopener noreferrer">Instagram</a> :)
+          rel="noopener noreferrer">Github</a> :)
       </p>
     </header>
 
@@ -44,42 +36,20 @@ import ExperienceSection from '../components/ExperienceSection.astro';
       <h2 class="section-heading">TL;DR</h2>
       <ul class="tldr-list">
         <li>
-          Just finished my third year at Stanford, and I'm after a (very)
-          last-minute internship.
+          Finished my third year at Stanford, and I'm after a paid
+          contract/internship role for the early fall
         </li>
         <li>
-          My experience with jobs and projects is all over the place because I
-          pivoted into AI my sophomore year, but I generally enjoy working on
-          hard technical problems. Some things I'm currently interested in:
-          <ul class="tldr-sublist">
-            <li>
-              Building agentic systems that solve complex problems, including
-              harnesses and custom tooling
-            </li>
-            <li>Building multimodal data pipelines</li>
-            <li>Designing, training, and improving models</li>
-            <li>
-              Understanding user wants and quickly building to meet their needs
-            </li>
-            <li>
-              Researching up-to-date ML techniques like diffusion, reinforcement
-              learning, computer vision, and geometric ML
-            </li>
-            <li>Benchmarking harnesses and models</li>
-          </ul>
+          Please go ahead and look into my work history and project details to
+          see if anything aligns
         </li>
         <li>
           I can play many roles if I have to. I can go all the way from bare
-          metal, code, and execution to strategy, leadership, and growth.
+          metal, code, and execution to strategy, leadership, and growth
         </li>
         <li>
-          I'm a lifelong Real Madrid fan, and soccer is a hobby I regularly
-          practice and watch. Crossing my fingers for Mexico this World Cup.
-        </li>
-        <li>
-          Another fun fact about me is that I play poker competitively and have
-          participated in 10+ tournaments throughout college so far. Really
-          looking forward to any home games, and can host too!
+          I can burn through A TON of tokens. For my Year in Code 2025 for
+          Cursor, I went through 1 billion tokens with the student pro plan
         </li>
       </ul>
     </section>
@@ -167,8 +137,7 @@ import ExperienceSection from '../components/ExperienceSection.astro';
               href: '/p/watchagent',
               bullets: [
                 'Built a 6 tool video-understanding agent harness that lets and orchestrator inspect video, audio, and transcript to find exact query moments cheaply',
-                'Benchmarked the harness on long-form subsets of Video-MME, WorldQA, and EgoSchema, beating agent systems built on proprietary GPT-4/GPT-4o reasoners',
-                'Built an evaluation pipeline for my harness using Modal GPUs since the main reasoner was Qwen2.5-32B and one of my tools called Qwen2.5-VL-7B for inference.',
+                'built on gpt-sized models',
                 'Built the evaluation pipeline by renting a CPU container and a H100 container from Modal. The CPU worker grabs a fixed batch of videos + q/a from the benchmark on HuggingFace and runs the harness, which calls Qwen from a separate H100 container via vLLM',
                 'The harnesses ‘watched’ over 500 videos and answered more than a 1,000 questions all under 100 bucks of Modal credits',
               ],
