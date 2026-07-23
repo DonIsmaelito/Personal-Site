@@ -159,56 +159,6 @@ import ExperienceSection from '../components/ExperienceSection.astro';
         />
 
         <Section
-          title="Research"
-          inGrid
-          entries={[
-            {
-              title: 'Sample-Efficient Reinforcement Learning for Video Agents',
-              href: '/p/sample-efficient-rl-for-video-agents',
-              description:
-                'After WatchAgent, I wanted to train a policy to maximize agent rewards in a similar video-understanding environment.',
-            },
-            {
-              title: 'flashattention_kernel',
-              href: '/p/flashattention-kernel',
-              description:
-                'Designed a hardware accelerator kernel for FlashAttention inference.',
-            },
-            {
-              title: 'TidyBot',
-              href: 'https://sites.google.com/stanford.edu/group1theguineapigs/home?authuser=0',
-              description:
-                "For a Collaborative Robotics class, our team built infrastructure that lets a bimanual TidyBot hear 'pick up X,' explore to find it, then grab it and place it in the user's hand. I designed the state machine and supported the PhDs on the team with smaller components.",
-            },
-            {
-              title: 'EgoBench',
-              href: '/p/egobench',
-              description:
-                'A benchmark that assesses how effectively egocentric video data is used for robot training.',
-            },
-          ]}
-        />
-      </div>
-
-      <div class="col-stack">
-        <Section
-          title="Deep Learning"
-          inGrid
-          entries={[
-            {
-              title: 'Placeholder entry',
-              description:
-                "Scaffolded so you can see this section sitting above Agents. Send me the real entries and I'll swap them in — or say the word and I'll move your RL / FlashAttention / EgoBench items here from Research.",
-            },
-            {
-              title: 'Placeholder entry',
-              description:
-                'Each entry can have a title, an optional link (opens a paper or demo, with the ↗ marker), and a one-line description — same shape as your other sections.',
-            },
-          ]}
-        />
-
-        <Section
           title="Agents"
           inGrid
           entries={[
@@ -242,6 +192,37 @@ import ExperienceSection from '../components/ExperienceSection.astro';
               href: 'https://drive.google.com/file/d/1gKbbb8InGe5QK673eAH69f6UzZwnb_nc/view?usp=sharing',
               description:
                 'With some friends, we built a Discord trust & safety feature that detects doxxing within a channel and applies consequences automatically.',
+            },
+          ]}
+        />
+
+        <Section
+          title="Research"
+          inGrid
+          entries={[
+            {
+              title: 'Sample-Efficient Reinforcement Learning for Video Agents',
+              href: '/p/sample-efficient-rl-for-video-agents',
+              description:
+                'After WatchAgent, I wanted to train a policy to maximize agent rewards in a similar video-understanding environment.',
+            },
+            {
+              title: 'flashattention_kernel',
+              href: '/p/flashattention-kernel',
+              description:
+                'Designed a hardware accelerator kernel for FlashAttention inference.',
+            },
+            {
+              title: 'TidyBot',
+              href: 'https://sites.google.com/stanford.edu/group1theguineapigs/home?authuser=0',
+              description:
+                "For a Collaborative Robotics class, our team built infrastructure that lets a bimanual TidyBot hear 'pick up X,' explore to find it, then grab it and place it in the user's hand. I designed the state machine and supported the PhDs on the team with smaller components.",
+            },
+            {
+              title: 'EgoBench',
+              href: '/p/egobench',
+              description:
+                'A benchmark that assesses how effectively egocentric video data is used for robot training.',
             },
           ]}
         />
@@ -364,7 +345,7 @@ import ExperienceSection from '../components/ExperienceSection.astro';
      <main> is capped at --measure (68ch), and a normal child can't exceed that
      box — so this ONE band escapes main's content box to breathe.
 
-     --band is the target width: as wide as --measure-wide (62rem) but never
+     --band is the target width: as wide as --measure-wide but never
      wider than the viewport minus main's 1.5rem L/R padding, so there is never
      a horizontal scrollbar on small screens. (--measure-wide is a plain length,
      not min(…,100%), specifically so this isn't re-clamped to main's box.)
@@ -383,7 +364,7 @@ import ExperienceSection from '../components/ExperienceSection.astro';
     position: relative;
     padding-top: 2.5rem;
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 2.5rem;
     align-items: start;
   }
@@ -403,12 +384,7 @@ import ExperienceSection from '../components/ExperienceSection.astro';
     background: color-mix(in srgb, var(--text-muted) 45%, transparent);
   }
 
-  /* Work History stretches to the taller second column's height and spreads its
-     entries to even out the two columns — set from inside ExperienceSection
-     (.section.in-grid), since Astro's scoped styles here can't reach a child
-     component's root element. */
-
-  /* The second column stacks two sections (Apps over Research) as one grid
+  /* The second column stacks Apps, Agents, and Research as one grid
      cell. min-width:0 lets it clamp to the grid track; the 3rem gap + the
      large section heros keep the sub-sections clearly distinct. */
   .col-stack {
@@ -418,19 +394,11 @@ import ExperienceSection from '../components/ExperienceSection.astro';
     gap: 3rem;
   }
 
-  /* Tablets / small laptops: drop the three columns to two. */
+  /* Phones: stack Work History above the project sections. */
   @media (max-width: 54rem) {
     .sections-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 2rem;
-    }
-  }
-
-  /* Phones: single stacked column. */
-  @media (max-width: 34rem) {
-    .sections-grid {
       grid-template-columns: 1fr;
-      gap: 2.5rem;
+      gap: 2rem;
     }
   }
 </style>
