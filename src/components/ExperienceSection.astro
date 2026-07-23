@@ -14,6 +14,8 @@ interface ExperienceEntry {
   /** Short paragraph describing the experience, rendered below the name.
    *  Optional — when absent the entry is just logo + name + year. */
   description?: string;
+  /** Dash-marked accomplishment list. When present, it replaces description. */
+  bullets?: string[];
 }
 
 interface Props {
@@ -58,8 +60,14 @@ const { title, entries, inGrid = false } = Astro.props;
               {entry.meta && <span class="experience-meta">{entry.meta}</span>}
             </div>
             {entry.role && <p class="experience-role">{entry.role}</p>}
-            {entry.description && (
-              <p class="experience-desc">{entry.description}</p>
+            {entry.bullets && entry.bullets.length > 0 ? (
+              <ul class="experience-bullets" role="list">
+                {entry.bullets.map((point) => <li>{point}</li>)}
+              </ul>
+            ) : (
+              entry.description && (
+                <p class="experience-desc">{entry.description}</p>
+              )
             )}
           </div>
         </li>
@@ -210,6 +218,31 @@ const { title, entries, inGrid = false } = Astro.props;
     line-height: 1.5;
     color: var(--text-muted);
     overflow-wrap: anywhere;
+  }
+
+  .experience-bullets {
+    list-style: none;
+    margin: 0.55rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .experience-bullets li {
+    position: relative;
+    padding-left: 1.4rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    overflow-wrap: anywhere;
+  }
+
+  .experience-bullets li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
   }
 
   /* At very narrow widths let the year drop below the name (mirrors Section's

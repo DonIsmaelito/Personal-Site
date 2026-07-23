@@ -23,13 +23,6 @@ import ExperienceSection from '../components/ExperienceSection.astro';
         />
         <h1>Ismael Duran</h1>
       </div>
-      <p class="tagline">
-        Hi, nice to meet you. Here is my
-        <a
-          href="https://github.com/DonIsmaelito"
-          target="_blank"
-          rel="noopener noreferrer">Github</a> :)
-      </p>
     </header>
 
     <section class="tldr">
@@ -40,6 +33,10 @@ import ExperienceSection from '../components/ExperienceSection.astro';
           contract/internship role for the early fall
         </li>
         <li>
+          I aspire to be a well-rounded engineer in the spaces of hardware,
+          software, and AI
+        </li>
+        <li>
           Please go ahead and look into my work history and project details to
           see if anything aligns
         </li>
@@ -48,8 +45,8 @@ import ExperienceSection from '../components/ExperienceSection.astro';
           metal, code, and execution to strategy, leadership, and growth
         </li>
         <li>
-          I can burn through A TON of tokens. For my Year in Code 2025 for
-          Cursor, I went through 1 billion tokens with the student pro plan
+          I can effectively burn through A TON of tokens. For 2025, I went
+          through 1 billion tokens with just the Cursor free student pro plan
         </li>
       </ul>
     </section>
@@ -64,71 +61,82 @@ import ExperienceSection from '../components/ExperienceSection.astro';
             name: 'Amazon Lab126',
             role: 'HDE Intern',
             meta: '2025',
-            description:
-              'Amazon is creating a foldable device and I was tasked to predict visible crease on foldable phones. I measured crease via folding-cycles/closed-state and used a laser-microscope to track increasing crease width. Compiled a dataset of this data and trained a model to predict how much usage it takes to see visible crease on most foldable devices.',
+            bullets: [
+              'Amazon is creating a foldable device and I was tasked to predict visible crease on foldable phones',
+              'I experimented with 3 Samsung foldable phones to understand crease patterns through repeated folding-cycles and closed-state timed measurements. I did this repeatedly increasing the amount of cycles each time; then measured the changing crease width and depth using a laser-microscope',
+              'Built a small dataset with this data and trained a model using mean squared error loss to predict how much usage it takes to see visible crease',
+            ],
           },
           {
             image: '/experiences/amazon-mark.png',
             name: 'Amazon Lab126',
             role: 'HDE Intern',
             meta: '2024',
-            description:
-              "I vectorized a dataset of customer reviews on Amazon's EchoBuds and ran top-k means to pinpoint an issue to fix. The ear-tip getting stuck on customer ears was the bud's biggest pain point, so I built an ear-tip retention dataset with an Instron machine and trained a regression-based model to predict the minimum retention force the ear-tip needed to hold.",
+            bullets: [
+              "Amazon's Echo Buds were getting many negative reviews and I was tasked to understand why and find a solution",
+              "After obtaining access to every review, I vectorized the dataset and ran top-k means to pinpoint an issue to fix. The ear-tip getting stuck on customer ears was the bud's biggest pain point",
+              'To find the earbud spec, I built a dataset with an Instron machine and trained a regression-based model to predict the minimum retention force the ear-tip needed to hold',
+            ],
           },
           {
             image: '/experiences/jane-mark.png',
             name: 'Jane Street',
             role: 'Unboxed Fellow',
             meta: '2023',
-            description:
-              'Before my freshman year at Stanford, I was invited to join an intensive three-week hybrid program where Jane Street traders taught us SQL, combinatorics, and ETF trading. I came away with a $2,000 scholarship toward school expenses.',
+            bullets: [
+              'Invited to join an intensive three-week hybrid program where Jane Street traders taught SQL, combinatorics, and ETF trading',
+              'Received a $2,000 scholarship toward school expenses',
+            ],
           },
           {
             image: '/experiences/renu-mark.png',
             name: 'Renu Robotics',
             role: 'Engineering Intern',
             meta: '2023',
-            description:
-              "I built ROS2 data-analysis tools that measured how wheel rotational frequencies shifted across terrains for the autonomous robots that mow solar fields, then validated them against Renu's own Renubot simulation model in Rviz.",
+            bullets: [
+              'Built a ROS2 python pipeline that would grab sensor data from various components on the Renu Bot, clean it, and showcase it in on an html site',
+              'Verified my code by manually driving around a robot outside the office',
+              'Measured how wheel rotational frequencies shifted across terrains for the autonomous RenuBot using R then validated the tools by manually obtaining data out in a local solar farm',
+            ],
           },
         ]}
       />
 
-      <div class="col-stack">
-        <Section
+      <Section
           title="Apps"
           inGrid
           entries={[
             {
               title: 'Peck',
               href: 'https://peck.insforge.site',
-              description:
-                'A gamified mobile app that turns data labeling into quick, one-minute game levels. As your dataset grows, you can easily access it with an API call.',
+              bullets: [
+                'Current side project',
+                'A gamified mobile app that turns data labeling into quick, one-minute game levels. As your dataset grows, you can easily access it with an API call',
+              ],
             },
             {
               title: 'Clippa',
               href: 'https://clippa.app',
               bullets: [
-                'A web app that lets users turn their multi-hour streams into edited TikTok-style clips in under 3 minutes for free',
-                "Built a Python pipeline that takes a raw mp4 or a YouTube link, pulls the transcript straight from YouTube's captions for free (or runs a small ASR model on the ffmpeg-extracted audio when there aren't any), then hands the transcript to a large reasoning model that reads it in a single pass to pick the moments. ffmpeg then cuts and renders a fixed 10 vertical clips with burned-in captions, costing me around $$ per hour of input footage.",
-                "Shaved 17% off each clip's file size by freezing the blurred background down to a single frame so only the content moves",
+                'Built a web app that lets users turn their multi-hour streams into edited TikTok-style clips in under 3 minutes for free',
+                "Built a Python pipeline that takes a raw mp4 or a YouTube link, pulls the transcript straight from YouTube's captions for free (or runs a small ASR model on the ffmpeg-extracted audio when there aren't any), then hands the transcript to a large reasoning model that reads it in a single pass to pick the moments",
+                'Originally, the pipeline took around 8 minutes to process 10 clips. I was able to do a 62% time reduction by fetching transcripts/video concurrently and rendering clips in parallel with ffmpeg’s veryfast preset',
                 'Built a live Twitch Top-100 grid where every visitor shares one cached call to Twitch instead of each browser hitting the API so it plays fast and smooth on my site',
-                'Obtained 36 users with very minimal advertisement of clippa on tiktok',
               ],
             },
             {
               title: 'Holdem-AI',
               href: 'https://holdem-ai.com',
               bullets: [
-                'A web app that lets people play NLH against 5 AI models (Claude, ChatGPT, Grok, Gemini, and DeepSeek) that actually reason about each hand, solo or in multiplayer tables',
-                'Built out the multiplayer feature using an open-source node server framework (Colyseus) that handled real-time syncing and game updates.',
-                "Built the context and action system for each poker bot. Before a model acts, it's given its equity, pot odds, outs, position, and a short read on how each opponent has been playing. It outputs a legal poker move as its action.",
+                'Built a web app that lets people play NLH against 5 AI models (Claude, ChatGPT, Grok, Gemini, and DeepSeek) that actually reason about each hand, solo or in multiplayer tables',
+                'Built out the multiplayer feature using an open-source node server framework (Colyseus) that handled real-time syncing and game updates',
+                "Built the context and action system for each poker bot in Python. Before a model acts, it's given its equity, pot odds, outs, position, and a short read on how each opponent has been playing. It outputs a legal poker move as its action",
               ],
             },
           ]}
         />
 
-        <Section
+      <Section
           title="Agents"
           inGrid
           entries={[
@@ -137,65 +145,64 @@ import ExperienceSection from '../components/ExperienceSection.astro';
               href: '/p/watchagent',
               bullets: [
                 'Built a 6 tool video-understanding agent harness that lets and orchestrator inspect video, audio, and transcript to find exact query moments cheaply',
-                'built on gpt-sized models',
-                'Built the evaluation pipeline by renting a CPU container and a H100 container from Modal. The CPU worker grabs a fixed batch of videos + q/a from the benchmark on HuggingFace and runs the harness, which calls Qwen from a separate H100 container via vLLM',
-                'The harnesses ‘watched’ over 500 videos and answered more than a 1,000 questions all under 100 bucks of Modal credits',
+                'Benchmarked the harness on long-form subsets of Video-MME, WorldQA, and EgoSchema, beating agent systems built on gpt-sized models',
+                'Built a python evaluation pipeline using a rented CPU container and H100 container from modal. The CPU worker grabs a fixed batch of videos + q/a from the benchmark on HuggingFace and runs the harness, which calls Qwen from a separate H100 container via vLLM',
+                'My harness ‘watched’ over 500 videos and answered more than a 1,000 questions all under 100 bucks of Modal credits',
               ],
             },
             {
               title: 'Co-Scientist',
               href: 'https://www.loom.com/share/566403785fef4f2785e300bfc5880bd2',
               bullets: [
-                'Along with two other peers, we built a deep-research agent leveraging a multi-agent system architecture. A principal investigator agent would receive the query, and spin up N specialized agents to tackle the research plan created by the PI. Each of these agents obtained technical context from Arxiv and Pubmed APIs',
-                'I built the context pipelines that would call these APIs, find the relevant papers, and clean the large batch of tokens by stripping abstracts, relevant work, and citations using regex. This minimized 35% of agent token input.',
+                'Along with two other peers, we built a deep-research agent leveraging a multi-agent system architecture. A principal investigator agent would receive the query, and spin up N specialized agents to tackle the research plan created by the PI. Each of these agents obtained context from Arxiv and Pubmed APIs',
+                'Built the context pipelines that would call these APIs, find the relevant papers, and clean the large batch of tokens by stripping abstracts, relevant work, and citations using regex. This minimized 35% of agent token input',
               ],
             },
             {
               title: 'MedMinute',
               href: 'https://drive.google.com/file/d/14G-TwpP49-4w6Uy0CuSLGhijgDdDIPmY/view?usp=vids_web',
               description:
-                'A local form-filling platform where people can talk, type, or pull from existing PDFs to complete blank forms. It was really just RAG with a few extra steps.',
+                'A local form-filling platform where people can talk, type, or pull from existing PDFs to complete blank forms. It was really just RAG with a few extra steps',
             },
             {
               title: 'Doxxing-Detection Bot',
               href: 'https://drive.google.com/file/d/1gKbbb8InGe5QK673eAH69f6UzZwnb_nc/view?usp=sharing',
               description:
-                'With some friends, we built a Discord trust & safety feature that detects doxxing within a channel and applies consequences automatically.',
+                'With some friends, we built a Discord trust & safety feature that detects doxxing within a channel and applies consequences automatically',
             },
           ]}
         />
 
-        <Section
-          title="Research"
+      <Section
+          title="ML Stuff"
           inGrid
           entries={[
             {
               title: 'Sample-Efficient Reinforcement Learning for Video Agents',
               href: '/p/sample-efficient-rl-for-video-agents',
               description:
-                'After WatchAgent, I wanted to train a policy to maximize agent rewards in a similar video-understanding environment.',
+                'After WatchAgent, I wanted to train a policy to maximize agent rewards in a similar video-understanding environment',
             },
             {
               title: 'flashattention_kernel',
               href: '/p/flashattention-kernel',
               description:
-                'Designed a hardware accelerator kernel for FlashAttention inference.',
+                'Designed a hardware accelerator kernel for FlashAttention inference',
             },
             {
               title: 'TidyBot',
               href: 'https://sites.google.com/stanford.edu/group1theguineapigs/home?authuser=0',
               description:
-                "For a Collaborative Robotics class, our team built infrastructure that lets a bimanual TidyBot hear 'pick up X,' explore to find it, then grab it and place it in the user's hand. I designed the state machine and supported the PhDs on the team with smaller components.",
+                "For a Collaborative Robotics class, our team built infrastructure that lets a bimanual TidyBot hear 'pick up X,' explore to find it, then grab it and place it in the user's hand. I designed the state machine and supported the PhDs on the team with smaller components",
             },
             {
               title: 'EgoBench',
               href: '/p/egobench',
               description:
-                'A benchmark that assesses how effectively egocentric video data is used for robot training.',
+                'A benchmark that assesses how effectively egocentric video data is used for robot training',
             },
           ]}
         />
-      </div>
     </div>
   </main>
 </Base>
@@ -211,17 +218,19 @@ import ExperienceSection from '../components/ExperienceSection.astro';
   }
 
   header {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
     margin-bottom: 2.5rem;
   }
 
-  /* Avatar + wordmark on one row, photo to the left of the name. The row carries
-     the space above the tagline (the h1's old bottom margin) so flex centering
-     aligns the circle to the name's optical middle. */
+  /* Centered identity row. Balanced vertical padding uses the space left by the
+     removed social tagline and seats the portrait/name slightly lower. */
   .name-row {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: clamp(0.9rem, 2.5vw, 1.25rem);
-    margin-bottom: 0.75rem;
+    margin: 0;
   }
 
   /* Circular head-and-shoulders portrait, sized a hair taller than the wordmark
@@ -244,13 +253,6 @@ import ExperienceSection from '../components/ExperienceSection.astro';
     letter-spacing: -0.02em;
     line-height: 1.05;
     margin: 0;
-  }
-
-  .tagline {
-    font-size: 1.05rem;
-    color: var(--text-muted);
-    margin: 0;
-    max-width: none;
   }
 
   /* TL;DR band — breaks out to the same width as the columns band below, so the
@@ -334,7 +336,8 @@ import ExperienceSection from '../components/ExperienceSection.astro';
     padding-top: 2.5rem;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2.5rem;
+    column-gap: 2.5rem;
+    row-gap: 4rem;
     align-items: start;
   }
 
@@ -353,17 +356,8 @@ import ExperienceSection from '../components/ExperienceSection.astro';
     background: color-mix(in srgb, var(--text-muted) 45%, transparent);
   }
 
-  /* The second column stacks Apps, Agents, and Research as one grid
-     cell. min-width:0 lets it clamp to the grid track; the 3rem gap + the
-     large section heros keep the sub-sections clearly distinct. */
-  .col-stack {
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-  }
-
-  /* Phones: stack Work History above the project sections. */
+  /* Narrow screens preserve DOM order in one column: Work History, Apps,
+     Agents, then ML Stuff. */
   @media (max-width: 54rem) {
     .sections-grid {
       grid-template-columns: 1fr;
