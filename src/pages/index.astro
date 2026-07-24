@@ -23,6 +23,11 @@ import ExperienceSection from '../components/ExperienceSection.astro';
         />
         <h1>Ismael Duran</h1>
       </div>
+      <p class="contact-row">
+        <a href="mailto:iaredur@stanford.edu">iaredur@stanford.edu</a>
+        <span aria-hidden="true">·</span>
+        <a href="tel:+12109741161">(210)-974-1161</a>
+      </p>
     </header>
 
     <section class="tldr">
@@ -44,104 +49,66 @@ import ExperienceSection from '../components/ExperienceSection.astro';
           I can play many roles if I have to. I can go all the way from bare
           metal, code, and execution to strategy, leadership, and growth
         </li>
-        <li>
-          I can effectively burn through A TON of tokens. For 2025, I went
-          through 1 billion tokens with just the Cursor free student pro plan
-        </li>
       </ul>
     </section>
 
     <div class="sections-grid">
-      <ExperienceSection
-        title="Work History"
-        inGrid
-        entries={[
-          {
-            image: '/experiences/amazon-mark.png',
-            name: 'Amazon Lab126',
-            role: 'HDE Intern',
-            meta: '2025',
-            bullets: [
-              'Amazon is creating a foldable device and I was tasked to predict visible crease on foldable phones',
-              'I experimented with 3 Samsung foldable phones to understand crease patterns through repeated folding-cycles and closed-state timed measurements. I did this repeatedly increasing the amount of cycles each time; then measured the changing crease width and depth using a laser-microscope',
-              'Built a small dataset with this data and trained a model using mean squared error loss to predict how much usage it takes to see visible crease',
-            ],
-          },
-          {
-            image: '/experiences/amazon-mark.png',
-            name: 'Amazon Lab126',
-            role: 'HDE Intern',
-            meta: '2024',
-            bullets: [
-              "Amazon's Echo Buds were getting many negative reviews and I was tasked to understand why and find a solution",
-              "After obtaining access to every review, I vectorized the dataset and ran top-k means to pinpoint an issue to fix. The ear-tip getting stuck on customer ears was the bud's biggest pain point",
-              'To find the earbud spec, I built a dataset with an Instron machine and trained a regression-based model to predict the minimum retention force the ear-tip needed to hold',
-            ],
-          },
-          {
-            image: '/experiences/jane-mark.png',
-            name: 'Jane Street',
-            role: 'Unboxed Fellow',
-            meta: '2023',
-            bullets: [
-              'Invited to join an intensive three-week hybrid program where Jane Street traders taught SQL, combinatorics, and ETF trading',
-              'Received a $2,000 scholarship toward school expenses',
-            ],
-          },
-          {
-            image: '/experiences/renu-mark.png',
-            name: 'Renu Robotics',
-            role: 'Engineering Intern',
-            meta: '2023',
-            bullets: [
-              'Built a ROS2 python pipeline that would grab sensor data from various components on the Renu Bot, clean it, and showcase it in on an html site',
-              'Verified my code by manually driving around a robot outside the office',
-              'Measured how wheel rotational frequencies shifted across terrains for the autonomous RenuBot using R then validated the tools by manually obtaining data out in a local solar farm',
-            ],
-          },
-        ]}
-      />
-
-      <Section
-          title="Apps"
+      <div class="section-column">
+        <ExperienceSection
+          title="Work History"
           inGrid
           entries={[
             {
-              title: 'Peck',
-              href: 'https://peck.insforge.site',
+              image: '/experiences/amazon-mark.png',
+              name: 'Amazon Lab126',
+              role: 'HDE Intern',
+              meta: '2025',
               bullets: [
-                'Current side project',
-                'A gamified mobile app that turns data labeling into quick, one-minute game levels. As your dataset grows, you can easily access it with an API call',
+                'Amazon is creating a foldable device and I was tasked to predict visible crease on foldable phones',
+                'Experimented with 3 Samsung foldable phones to understand crease patterns through repeated folding-cycles and closed-state timed measurements. I did this in contiguous sets increasing the amount of cycles each time, then measured the changing width and depth using a laser-microscope',
+                'Built a small dataset with this data and trained a model using mean squared error loss to predict how much usage it takes to see visible crease',
               ],
             },
             {
-              title: 'Clippa',
-              href: 'https://clippa.app',
+              image: '/experiences/amazon-mark.png',
+              name: 'Amazon Lab126',
+              role: 'HDE Intern',
+              meta: '2024',
               bullets: [
-                'Built a web app that lets users turn their multi-hour streams into edited TikTok-style clips in under 3 minutes for free',
-                "Built a Python pipeline that takes a raw mp4 or a YouTube link, pulls the transcript straight from YouTube's captions for free (or runs a small ASR model on the ffmpeg-extracted audio when there aren't any), then hands the transcript to a large reasoning model that reads it in a single pass to pick the moments",
-                'Originally, the pipeline took around 8 minutes to process 10 clips. I was able to do a 62% time reduction by fetching transcripts/video concurrently and rendering clips in parallel with ffmpeg’s veryfast preset',
-                'Built a live Twitch Top-100 grid where every visitor shares one cached call to Twitch instead of each browser hitting the API so it plays fast and smooth on my site',
+                "Amazon's Echo Buds were getting many negative reviews and I was tasked to understand why and find a solution",
+                "After obtaining access to every review, I vectorized the dataset and ran top-k means to pinpoint an issue to fix. The ear-tip getting stuck on customer ears was the bud's biggest pain point",
+                'To find the earbud spec, I built a dataset with an Instron machine and trained a regression-based model to predict the minimum retention force the ear-tip needed to hold',
               ],
             },
             {
-              title: 'Holdem-AI',
-              href: 'https://holdem-ai.com',
+              image: '/experiences/jane-mark.png',
+              name: 'Jane Street',
+              role: 'Unboxed Fellow',
+              meta: '2023',
               bullets: [
-                'Built a web app that lets people play NLH against 5 AI models (Claude, ChatGPT, Grok, Gemini, and DeepSeek) that actually reason about each hand, solo or in multiplayer tables',
-                'Built out the multiplayer feature using an open-source node server framework (Colyseus) that handled real-time syncing and game updates',
-                "Built the context and action system for each poker bot in Python. Before a model acts, it's given its equity, pot odds, outs, position, and a short read on how each opponent has been playing. It outputs a legal poker move as its action",
+                'Invited to join an intensive three-week hybrid program where Jane Street traders taught SQL, combinatorics, and ETF trading',
+                'Received a $2,000 scholarship toward school expenses',
+              ],
+            },
+            {
+              image: '/experiences/renu-mark.png',
+              name: 'Renu Robotics',
+              role: 'Engineering Intern',
+              meta: '2023',
+              bullets: [
+                'Built a ROS2 python pipeline that would stream sensor data from various components on the robot, clean it using message filters, and portray it on an html site',
+                'Verified my code by manually driving around a robot outside the office',
               ],
             },
           ]}
         />
 
-      <Section
+        <Section
           title="Agents"
           inGrid
           entries={[
             {
-              title: 'WatchAgent',
+              title: 'Watch Agent',
               href: '/p/watchagent',
               bullets: [
                 'Built a 6 tool video-understanding agent harness that lets and orchestrator inspect video, audio, and transcript to find exact query moments cheaply',
@@ -172,8 +139,44 @@ import ExperienceSection from '../components/ExperienceSection.astro';
             },
           ]}
         />
+      </div>
 
-      <Section
+      <div class="section-column">
+        <Section
+          title="Apps"
+          inGrid
+          entries={[
+            {
+              title: 'Peck',
+              href: 'https://peck.insforge.site',
+              bullets: [
+                'Current side project',
+                'A gamified mobile app that turns data labeling into quick, one-minute game levels. As your dataset grows, you can easily access it with an API call',
+              ],
+            },
+            {
+              title: 'Clippa',
+              href: 'https://clippa.app',
+              bullets: [
+                'Built a web app that lets users turn their multi-hour streams into edited TikTok-style clips in under 3 minutes for free',
+                "Built a Python pipeline that takes a raw mp4 or a YouTube link, pulls the transcript straight from YouTube's captions for free (or runs a small ASR model on the ffmpeg-extracted audio when there aren't any), then hands the transcript to a large reasoning model that reads it in a single pass to pick the moments",
+                'Originally, the pipeline took around 8 minutes to process 10 clips. I was able to do a 62% time reduction by fetching transcripts/video concurrently and rendering clips in parallel with ffmpeg’s veryfast preset',
+                'Built a live Twitch Top-100 grid where every visitor shares one cached call to Twitch instead of each browser hitting the API so it plays fast and smooth on my site',
+              ],
+            },
+            {
+              title: 'Holdem-AI',
+              href: 'https://holdem-ai.com',
+              bullets: [
+                'Built a web app that lets people play NLH against 5 AI models (Claude, ChatGPT, Grok, Gemini, and DeepSeek) solo or in multiplayer tables',
+                'Built the multiplayer...',
+                "Built the context and action system for each poker bot in Python. Before a model acts, it's given its equity, pot odds, outs, position, and a short read on how each opponent has been playing. It outputs a legal poker move as its action",
+              ],
+            },
+          ]}
+        />
+
+        <Section
           title="ML Stuff"
           inGrid
           entries={[
@@ -184,25 +187,14 @@ import ExperienceSection from '../components/ExperienceSection.astro';
                 'After WatchAgent, I wanted to train a policy to maximize agent rewards in a similar video-understanding environment',
             },
             {
-              title: 'flashattention_kernel',
+              title: 'FPGA FlashAttention Kernel',
               href: '/p/flashattention-kernel',
               description:
                 'Designed a hardware accelerator kernel for FlashAttention inference',
             },
-            {
-              title: 'TidyBot',
-              href: 'https://sites.google.com/stanford.edu/group1theguineapigs/home?authuser=0',
-              description:
-                "For a Collaborative Robotics class, our team built infrastructure that lets a bimanual TidyBot hear 'pick up X,' explore to find it, then grab it and place it in the user's hand. I designed the state machine and supported the PhDs on the team with smaller components",
-            },
-            {
-              title: 'EgoBench',
-              href: '/p/egobench',
-              description:
-                'A benchmark that assesses how effectively egocentric video data is used for robot training',
-            },
           ]}
         />
+      </div>
     </div>
   </main>
 </Base>
@@ -231,6 +223,22 @@ import ExperienceSection from '../components/ExperienceSection.astro';
     justify-content: center;
     gap: clamp(0.9rem, 2.5vw, 1.25rem);
     margin: 0;
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin: 1rem 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .contact-row a {
+    color: inherit;
   }
 
   /* Circular head-and-shoulders portrait, sized a hair taller than the wordmark
@@ -337,8 +345,16 @@ import ExperienceSection from '../components/ExperienceSection.astro';
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap: 2.5rem;
-    row-gap: 4rem;
     align-items: start;
+  }
+
+  /* Each desktop column flows independently, so a shorter Apps section no
+     longer inherits the height of Work History before ML Stuff can begin. */
+  .section-column {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
   }
 
   /* Short divider above the columns band — replaces the old full-width hairline
@@ -356,12 +372,14 @@ import ExperienceSection from '../components/ExperienceSection.astro';
     background: color-mix(in srgb, var(--text-muted) 45%, transparent);
   }
 
-  /* Narrow screens preserve DOM order in one column: Work History, Apps,
-     Agents, then ML Stuff. */
   @media (max-width: 54rem) {
     .sections-grid {
       grid-template-columns: 1fr;
-      gap: 2rem;
+      gap: 4rem;
+    }
+
+    .section-column {
+      gap: 4rem;
     }
   }
 </style>
