@@ -121,21 +121,27 @@ import ExperienceSection from '../components/ExperienceSection.astro';
               title: 'Co-Scientist',
               href: 'https://www.loom.com/share/566403785fef4f2785e300bfc5880bd2',
               bullets: [
-                'Along with two other peers, we built a deep-research agent leveraging a multi-agent system architecture. A principal investigator agent would receive the query, and spin up N specialized agents to tackle the research plan created by the PI. Each of these agents obtained context from Arxiv and Pubmed APIs',
-                'Built the context pipelines that would call these APIs, find the relevant papers, and clean the large batch of tokens by stripping abstracts, relevant work, and citations using regex. This minimized 35% of agent token input',
+                'Along with two other peers, we built a deep-research agent leveraging a multi-agent system architecture. A principal investigator agent would receive the query, and spin up N specialized agents to tackle the research plan created by the PI. Each of these agents obtained technical context from Arxiv and Pubmed APIs',
+                'I built the context pipelines that would call these APIs, find the relevant papers, and clean the large batch of tokens by stripping abstracts, relevant work, and citations using regex. This minimized 35% of agent token input',
               ],
             },
             {
               title: 'MedMinute',
               href: 'https://drive.google.com/file/d/14G-TwpP49-4w6Uy0CuSLGhijgDdDIPmY/view?usp=vids_web',
-              description:
-                'A local form-filling platform where people can talk, type, or pull from existing PDFs to complete blank forms. It was really just RAG with a few extra steps',
+              bullets: [
+                'MedMinute is a local form filling platform where people can talk, type, or pull from existing PDFs to complete blank medical forms',
+                "I built a Python pipeline that takes a PDF or image, runs OCR using pdf2image and Tesseract, chunks the extracted text, embeds it with Ollama's embed text model into a local Chroma vector database, extracts patient information as JSON using an LLM, and then maps that information onto blank form fields so the frontend can update them live",
+                'I added a voice path where the browser records microphone audio and streams it over a FastAPI WebSocket, ElevenLabs transcribes the speech, an LLM generates a reply, and ElevenLabs converts that reply back to speech for the user',
+                'The voice agent can also detect natural language upload requests like asking it to find a PDF, and it ranks local files by filename matches, form keywords, and whether the PDF has fillable AcroForm fields before automatically pulling the best match',
+              ],
             },
             {
               title: 'Doxxing-Detection Bot',
               href: 'https://drive.google.com/file/d/1gKbbb8InGe5QK673eAH69f6UzZwnb_nc/view?usp=sharing',
-              description:
-                'With some friends, we built a Discord trust & safety feature that detects doxxing within a channel and applies consequences automatically',
+              bullets: [
+                'With some friends, we built a Discord trust & safety feature that detects doxxing within a channel and applies consequences automatically given their magnitude',
+                'Integrated Supabase to store and monitor channel activity. Every message then goes through a regex pass, and if flagged, it gets removed automatically and goes to an LLM for review',
+              ],
             },
           ]}
         />
@@ -169,7 +175,7 @@ import ExperienceSection from '../components/ExperienceSection.astro';
               href: 'https://holdem-ai.com',
               bullets: [
                 'Built a web app that lets people play NLH against 5 AI models (Claude, ChatGPT, Grok, Gemini, and DeepSeek) solo or in multiplayer tables',
-                'Built the multiplayer...',
+                'Built out the multiplayer feature using an open-source node server framework (Colyseus) that handled real-time syncing and game updates',
                 "Built the context and action system for each poker bot in Python. Before a model acts, it's given its equity, pot odds, outs, position, and a short read on how each opponent has been playing. It outputs a legal poker move as its action",
               ],
             },
@@ -183,14 +189,23 @@ import ExperienceSection from '../components/ExperienceSection.astro';
             {
               title: 'Sample-Efficient Reinforcement Learning for Video Agents',
               href: '/p/sample-efficient-rl-for-video-agents',
-              description:
-                'After WatchAgent, I wanted to train a policy to maximize agent rewards in a similar video-understanding environment',
+              bullets: [
+                'I started from the question of whether an agent can understand a full video while watching as little of it as possible, and built an experiment that uses different sample-efficient reinforcement learning algorithms to teach an agent when to stop watching and which tools to call next, rather than following a strict tool-based harness. Then evaluated each algorithm',
+                'Built a reinforcement learning environment where each episode gave the agent one video question, a bank with size 32 CLIP frame embedding blocks from the video, and eight possible actions for retrieving relevant frames, adjusting the search window, requesting BLIP-2 captions, or answering',
+                'Designed the agent’s state to track the question, evidence collected so far, current search window, previous tool usage, and remaining call budget',
+                'Implemented a score function where the agent earned one point for a correct answer and lost 0.03 points per tool call',
+                'Built a python pipeline that used T4 GPUs for CLIP/BLIP-2 inference, trained RL controllers on cached features in CPU containers, and parallelized experiments. Spent around 40 bucks on Modal credits',
+              ],
             },
             {
               title: 'FPGA FlashAttention Kernel',
               href: '/p/flashattention-kernel',
-              description:
-                'Designed a hardware accelerator kernel for FlashAttention inference',
+              bullets: [
+                'I wanted to learn about recent transformer optimizations, so I built FlashAttention from scratch as an FPGA kernel in SystemC, compiled to RTL for an FPGA on AWS F2',
+                'Following the FlashAttention paper, I never compute the full N×N attention score matrix, I streamed it as 32×32 query and key tiles through an online softmax update, so the kernel only holds one tile plus a small max sum on-chip',
+                'To use the FPGA benefits, I built 16 parallel processing elements that each handle one query row with a 64-wide dot product per cycle and used 16-bit fixed point with wider 24/32-bit accumulators for the attention math',
+                'Built a python CPU baseline and the kernel had a 73x speedup over it',
+              ],
             },
           ]}
         />
