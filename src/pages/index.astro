@@ -132,7 +132,6 @@ import ExperienceSection from '../components/ExperienceSection.astro';
                 'MedMinute is a local form filling platform where people can talk, type, or pull from existing PDFs to complete blank medical forms',
                 "I built a Python pipeline that takes a PDF or image, runs OCR using pdf2image and Tesseract, chunks the extracted text, embeds it with Ollama's embed text model into a local Chroma vector database, extracts patient information as JSON using an LLM, and then maps that information onto blank form fields so the frontend can update them live",
                 'I added a voice path where the browser records microphone audio and streams it over a FastAPI WebSocket, ElevenLabs transcribes the speech, an LLM generates a reply, and ElevenLabs converts that reply back to speech for the user',
-                'The voice agent can also detect natural language upload requests like asking it to find a PDF, and it ranks local files by filename matches, form keywords, and whether the PDF has fillable AcroForm fields before automatically pulling the best match',
               ],
             },
             {
